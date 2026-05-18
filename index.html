@@ -108,6 +108,20 @@
         .custom-card:hover .card-github-label { color: var(--accent); }
         .card-github-label svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
+        /* PROJECT CARD IMAGE PREVIEW */
+        .custom-card.has-preview { padding: 0; }
+        .custom-card.has-preview .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+        .project-preview { width: 100%; height: 180px; position: relative; overflow: hidden; flex-shrink: 0; background: #1a1a1a; }
+        .project-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; transition: transform 0.5s ease, filter 0.4s ease; filter: brightness(0.85) saturate(0.9); }
+        .custom-card:hover .project-preview img { transform: scale(1.05); filter: brightness(1) saturate(1); }
+        .project-preview-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #0a140a 0%, #0e1a28 100%); position: relative; }
+        .project-preview-placeholder::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(190,242,100,0.02) 3px, rgba(190,242,100,0.02) 4px); }
+        .project-preview-placeholder::after { content: ''; position: absolute; inset: 10px; border: 1px dashed rgba(190,242,100,0.1); border-radius: 8px; pointer-events: none; }
+        .project-preview-icon { font-size: 3rem; position: relative; filter: drop-shadow(0 0 14px var(--accent-glow)); }
+        .project-preview-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; position: relative; }
+        .project-preview-badge { position: absolute; top: 10px; right: 10px; z-index: 2; background: rgba(0,0,0,0.82); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 4px 9px; display: flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 0.6rem; color: #6baed6; backdrop-filter: blur(8px); }
+        @media (max-width: 768px) { .project-preview { height: 150px; } }
+
         /* TIMELINE */
         #timeline { background: linear-gradient(to bottom, transparent, rgba(190,242,100,0.02), transparent); }
         .timeline-wrapper { position: relative; padding-left: 40px; }
@@ -424,35 +438,70 @@
         <div class="container">
             <h2 class="section-title reveal">root@projects:~#</h2>
             <div class="card-grid">
-                <a href="https://www.linkedin.com/posts/yazish-khan_raspberrypi-iot-homeautomation-ugcPost-7424179714522636288-0lG3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEwQursBBEotILYc2QREoqnOEUIKkLG2jSM" target="_blank" rel="noopener" class="custom-card reveal">
-                    <div class="card-icon">🎙️</div><h3>VocalGPT</h3>
-                    <p>Offline AI voice assistant powered by GPT, integrated with Raspberry Pi and various hardware for home automation. No cloud required.</p>
-                    <div class="card-tag"><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Raspberry Pi</span><span class="tag">AI</span></div>
-                    <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/VocalGPT ↗</div>
+                <a href="https://www.linkedin.com/posts/yazish-khan_raspberrypi-iot-homeautomation-ugcPost-7424179714522636288-0lG3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEwQursBBEotILYc2QREoqnOEUIKkLG2jSM" target="_blank" rel="noopener" class="custom-card has-preview reveal">
+                    <div class="project-preview">
+                        <img src="proj_vocalgpt.jpg" alt="VocalGPT" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="project-preview-placeholder" style="display:none;"><div class="project-preview-icon">🎙️</div><div class="project-preview-label">VocalGPT</div></div>
+                        <div class="project-preview-badge"><svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>VocalGPT</h3>
+                        <p>Offline AI voice assistant powered by GPT, integrated with Raspberry Pi and various hardware for home automation. No cloud required.</p>
+                        <div class="card-tag"><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Raspberry Pi</span><span class="tag">AI</span></div>
+                        <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/VocalGPT ↗</div>
+                    </div>
                 </a>
-                <a href="https://github.com/yazishkhan/server-build" target="_blank" rel="noopener" class="custom-card reveal delay-1">
-                    <div class="card-icon">☸️</div><h3>Server Build — K8s Lab</h3>
-                    <p>Production-grade 5-node Kubernetes homelab built from scratch. Includes Helm charts, CI/CD pipelines, and self-hosted services.</p>
-                    <div class="card-tag"><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">Linux</span><span class="tag">DevOps</span></div>
-                    <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/server-build ↗</div>
+                <a href="https://github.com/yazishkhan/server-build" target="_blank" rel="noopener" class="custom-card has-preview reveal delay-1">
+                    <div class="project-preview">
+                        <img src="proj_k8s.jpg" alt="K8s Homelab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="project-preview-placeholder" style="display:none;"><div class="project-preview-icon">☸️</div><div class="project-preview-label">K8s Lab</div></div>
+                        <div class="project-preview-badge"><svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Server Build — K8s Lab</h3>
+                        <p>Production-grade 5-node Kubernetes homelab built from scratch. Includes Helm charts, CI/CD pipelines, and self-hosted services.</p>
+                        <div class="card-tag"><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">Linux</span><span class="tag">DevOps</span></div>
+                        <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/server-build ↗</div>
+                    </div>
                 </a>
-                <a href="https://github.com/yazishkhan/codey" target="_blank" rel="noopener" class="custom-card reveal delay-2">
-                    <div class="card-icon">💻</div><h3>Codey Website</h3>
-                    <p>Online Code Judge platform for college coding fests. Built on Judge0 API, containerized with Docker, handles 200+ concurrent users.</p>
-                    <div class="card-tag"><span class="tag">Docker</span><span class="tag">Judge0</span><span class="tag">CI/CD</span><span class="tag">Web</span></div>
-                    <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/codey ↗</div>
+                <a href="https://github.com/yazishkhan/codey" target="_blank" rel="noopener" class="custom-card has-preview reveal delay-2">
+                    <div class="project-preview">
+                        <img src="proj_codey.jpg" alt="Codey Website" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="project-preview-placeholder" style="display:none;"><div class="project-preview-icon">💻</div><div class="project-preview-label">Codey</div></div>
+                        <div class="project-preview-badge"><svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Codey Website</h3>
+                        <p>Online Code Judge platform for college coding fests. Built on Judge0 API, containerized with Docker, handles 200+ concurrent users.</p>
+                        <div class="card-tag"><span class="tag">Docker</span><span class="tag">Judge0</span><span class="tag">CI/CD</span><span class="tag">Web</span></div>
+                        <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/codey ↗</div>
+                    </div>
                 </a>
-                <a href="https://github.com/yazishkhan/rpi-otp-server" target="_blank" rel="noopener" class="custom-card reveal delay-1">
-                    <div class="card-icon">🔐</div><h3>RPi OTP Server</h3>
-                    <p>A self-hosted One-Time Password authentication server running on Raspberry Pi. Secure, offline 2FA for personal infrastructure.</p>
-                    <div class="card-tag"><span class="tag">Python</span><span class="tag">Raspberry Pi</span><span class="tag">Security</span><span class="tag">2FA</span></div>
-                    <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/rpi-otp-server ↗</div>
+                <a href="https://github.com/yazishkhan/rpi-otp-server" target="_blank" rel="noopener" class="custom-card has-preview reveal delay-1">
+                    <div class="project-preview">
+                        <img src="proj_otp.jpg" alt="RPi OTP Server" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="project-preview-placeholder" style="display:none;"><div class="project-preview-icon">🔐</div><div class="project-preview-label">OTP Server</div></div>
+                        <div class="project-preview-badge"><svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>RPi OTP Server</h3>
+                        <p>A self-hosted One-Time Password authentication server running on Raspberry Pi. Secure, offline 2FA for personal infrastructure.</p>
+                        <div class="card-tag"><span class="tag">Python</span><span class="tag">Raspberry Pi</span><span class="tag">Security</span><span class="tag">2FA</span></div>
+                        <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/rpi-otp-server ↗</div>
+                    </div>
                 </a>
-                <a href="https://github.com/yazishkhan/rpy-tool" target="_blank" rel="noopener" class="custom-card reveal delay-2">
-                    <div class="card-icon">🛠️</div><h3>The RPY Tool</h3>
-                    <p>A CLI utility tool for Raspberry Pi automation and system management. Simplifies common RPi tasks with a clean command-line interface.</p>
-                    <div class="card-tag"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Raspberry Pi</span><span class="tag">Automation</span></div>
-                    <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/rpy-tool ↗</div>
+                <a href="https://github.com/yazishkhan/rpy-tool" target="_blank" rel="noopener" class="custom-card has-preview reveal delay-2">
+                    <div class="project-preview">
+                        <img src="proj_rpy.jpg" alt="RPY Tool" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="project-preview-placeholder" style="display:none;"><div class="project-preview-icon">🛠️</div><div class="project-preview-label">RPY Tool</div></div>
+                        <div class="project-preview-badge"><svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>The RPY Tool</h3>
+                        <p>A CLI utility tool for Raspberry Pi automation and system management. Simplifies common RPi tasks with a clean command-line interface.</p>
+                        <div class="card-tag"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">Raspberry Pi</span><span class="tag">Automation</span></div>
+                        <div class="card-github-label"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>github.com/yazishkhan/rpy-tool ↗</div>
+                    </div>
                 </a>
             </div>
         </div>
